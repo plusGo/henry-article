@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start:local": "node config/set-local-env.js && ng serve --proxy-config proxy.local.json",
-    "build:prod": "node config/set-prod-env.js && ng build",
+    "build:prod": "node config/set-prod-env.js && ng build --base-href=/article-front/",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
