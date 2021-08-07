@@ -5,6 +5,7 @@ import {PortalLikeService} from '../../../core/service/biz/portal/portal-like.se
 import {LikeTypeEnum} from '../../../model/enum/like-type.enum';
 import {AuthService} from '../../../../../projects/auth/src/lib/auth.service';
 import {LoginService} from '../../../core/service/biz/auth/login.service';
+import {LikeCountEvent} from '../like-count/like-count.component';
 
 @Component({
   selector: 'app-article-list-brief',
@@ -31,40 +32,12 @@ export class ArticleListBriefComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  toggleLike(event: MouseEvent): void {
-    event.stopPropagation();
-
-    if (!this.authService.isLogin()) {
-      this.loginService.openLoginModal();
-      return;
-    }
-
-    if (this.loadingState.likeLoading) {
-      return;
-    }
-
-    this.loadingState.likeLoading = true;
-
-    if (this.articleBrief.isLiked) {
-      this.likeService.unLikeByCurrentUser(this.articleBrief.id, LikeTypeEnum.ARTICLE).subscribe(() => {
-        this.loadingState.likeLoading = false;
-        this.articleBrief.isLiked = false;
-        this.articleBrief.likeCount--;
-        this.changeDetectorRef.markForCheck();
-      }, () => {
-        this.loadingState.likeLoading = false;
-        this.changeDetectorRef.markForCheck();
-      })
-    } else {
-      this.likeService.likeByCurrentUser(this.articleBrief.id, LikeTypeEnum.ARTICLE).subscribe(() => {
-        this.loadingState.likeLoading = false;
-        this.articleBrief.isLiked = true;
-        this.articleBrief.likeCount++;
-        this.changeDetectorRef.markForCheck();
-      }, () => {
-        this.loadingState.likeLoading = false;
-        this.changeDetectorRef.markForCheck();
-      })
-    }
+  onLikeStateChange(event: LikeCountEvent) {
+    this.articleBrief = {
+      ...this.articleBrief,
+      likeCount: event.count,
+      isLiked: event.isLiked
+    };
+    this.changeDetectorRef.markForCheck();
   }
 }

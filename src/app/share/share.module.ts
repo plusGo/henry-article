@@ -27,6 +27,7 @@ import {NzSpinModule} from 'ng-zorro-antd/spin';
 import {NzEmptyModule} from 'ng-zorro-antd/empty';
 import {ArticleCommentEditorComponent} from './component/article-comment-editor/article-comment-editor.component';
 import {EnumLabelPipe} from './pipe/enum-label.pipe';
+import {LikeCountComponent} from './component/like-count/like-count.component';
 
 
 export const ZORRO_MODULES = [
@@ -53,7 +54,8 @@ export const COMPONENTS = [
   ArticleListBriefComponent,
   ArticleTagRenderComponent,
   UserAvatarComponent,
-  ArticleCommentEditorComponent
+  ArticleCommentEditorComponent,
+  LikeCountComponent
 ];
 export const PIPES = [AttachmentImgPipe, EnumLabelPipe];
 

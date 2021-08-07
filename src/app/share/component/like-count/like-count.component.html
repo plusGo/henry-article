@@ -1,0 +1,7 @@
+<div (click)="toggleLike($event)" class="mr-12 flex items-center cursor-pointer">
+  <i *ngIf="loadingState.likeLoading" nz-icon nzType="loading" nzTheme="outline"></i>
+  <i *ngIf="!loadingState.likeLoading" [class.font-color-primary]="isLiked" nz-icon
+     nzType="like"
+     nzTheme="outline"></i>
+  <span class="ml-2">{{count}}</span>
+</div>

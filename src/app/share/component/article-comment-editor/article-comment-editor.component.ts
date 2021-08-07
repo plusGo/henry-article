@@ -10,6 +10,11 @@ import {
 import {PortalCommentService} from '../../../core/service/biz/portal/portal-comment.service';
 import {NzMessageService} from 'ng-zorro-antd/message';
 
+export interface CommentEditorEvent {
+  id: string;
+  repliedTargetId: string;
+}
+
 @Component({
   selector: 'app-article-comment-editor',
   templateUrl: './article-comment-editor.component.html',
@@ -31,7 +36,7 @@ export class ArticleCommentEditorComponent implements OnInit {
   repliedTargetId: string;
 
   @Output()
-  stateChange = new EventEmitter<string>();
+  stateChange = new EventEmitter<CommentEditorEvent>();
 
   constructor(private portalCommentService: PortalCommentService,
               private changeDetectorRef: ChangeDetectorRef,
@@ -43,16 +48,20 @@ export class ArticleCommentEditorComponent implements OnInit {
 
   doComment(): void {
     this.loading = true;
-    this.portalCommentService.comment({
+    const request = {
       content: this.commentVal,
       targetId: this.targetId,
       repliedTargetId: this.repliedTargetId,
       repliedUsersId: this.repliedUsersId,
-    }).subscribe(() => {
+    };
+    this.portalCommentService.comment(request).subscribe((id) => {
       this.loading = false;
       this.messageService.success('评论成功');
       this.commentVal = '';
-      this.stateChange.emit(this.targetId);
+      this.stateChange.emit({
+        id,
+        repliedTargetId: this.repliedTargetId
+      });
       this.changeDetectorRef.markForCheck();
     }, () => this.loading = false);
   }

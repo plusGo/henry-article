@@ -5,7 +5,7 @@ export class CommentDto {
   content?: string;
   targetId?: string;
   commenter?: UserSocialInfoDto;
-  creator?: string;
+  commenterId?: string;
   createdTime?: string;
 
   replyList?: CommentDto[];
@@ -13,6 +13,7 @@ export class CommentDto {
   repliedUserId?: string;
   repliedTargetId?: string;
 
-  likeCount?: string;
+  likeCount?: number;
+  viewCount?: number;
   isLiked?: boolean;
 }

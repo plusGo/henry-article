@@ -19,13 +19,8 @@
             <i nz-icon nzType="eye" nzTheme="outline"></i>
             <span class="ml-2">{{articleBrief?.viewCount}}</span>
           </div>
-          <div (click)="toggleLike($event)" class="mr-12 flex items-center">
-            <i *ngIf="loadingState.likeLoading" nz-icon nzType="loading" nzTheme="outline"></i>
-            <i *ngIf="!loadingState.likeLoading" [class.font-color-primary]="articleBrief?.isLiked" nz-icon
-               nzType="like"
-               nzTheme="outline"></i>
-            <span class="ml-2">{{articleBrief?.likeCount}}</span>
-          </div>
+          <app-like-count [targetId]="articleBrief?.id" [count]="articleBrief?.likeCount" [isLiked]="articleBrief?.isLiked"
+          (onStateChange)="onLikeStateChange($event)"></app-like-count>
           <div class="flex items-center">
             <i nz-icon nzType="comment" nzTheme="outline"></i>
             <span class="ml-2">{{articleBrief?.commentCount}}</span>
