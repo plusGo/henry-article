@@ -1,0 +1,23 @@
+<div class="index-content">
+  <div class="article-wrapper p-4">
+    <nz-skeleton *ngIf="loadingState.initial"></nz-skeleton>
+    <nz-empty nzNotFoundContent="空空如也 ~ ~" *ngIf="!loadingState.initial && !articleBriefs.length"></nz-empty>
+    <ng-container *ngIf="articleBriefs.length">
+      <app-article-list-brief (click)="goToDetail(articleBrief)" [articleBrief]="articleBrief"
+                              *ngFor="let articleBrief of articleBriefs"></app-article-list-brief>
+    </ng-container>
+    <nz-spin class="h-20" *ngIf="!loadingState.loadingOver"
+             [nzSpinning]="!loadingState.initial && loadingState.loadingMore"></nz-spin>
+    <div *ngIf="loadingState.loadingOver" class="flex item-center justify-center py-4 text-gray-400">
+      ~ ~ 没有更多啦
+    </div>
+  </div>
+  <div class="right-wrapper">
+    <div class="advert">
+      <img
+        src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/af093b6744c04c05b116a664013f50c4~tplv-k3u1fbpfcp-watermark.image"
+        alt="">
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,43 @@
+@import "../../../style/variable";
+
+.editor-header {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  padding: 0 27px;
+  background-color: $whiteColor;
+  border-bottom: 1px solid $lightBorderColor;
+  z-index: 100;
+
+  .editor-title-input {
+    margin: 0;
+    padding: 0;
+    font-size: 24px;
+    font-weight: 500;
+    color: $fontColor;
+    border: none;
+    outline: none;
+    flex: 1 1 auto;
+    height: 100%;
+    -webkit-box-flex: 1;
+  }
+
+  .right-box {
+    padding: 0 8px;
+  }
+}
+
+::ng-deep {
+  .submit-panel {
+    width: 560px;
+
+    .ant-upload.ant-upload-select-picture-card {
+      width: 160px;
+      height: 86px;
+
+      .ant-upload {
+        flex-direction: column;
+      }
+    }
+  }
+}

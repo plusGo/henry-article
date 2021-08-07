@@ -1,0 +1,33 @@
+<div class="main shadow-sm bg-white p-12 rounded-sm">
+  <article class="divide-y divide-gray-200 divide-solid">
+    <nz-skeleton *ngIf="loadingState.loadingArticle"></nz-skeleton>
+    <div class="py-12">
+      <div class="flex flex-row h-20 items-center mb-12">
+        <nz-avatar nzSize="large" class="flex-none mr-4" nzIcon="user"></nz-avatar>
+        <div class="w-full  flex flex-col justify-between h-full">
+          <div class="font-bold text-4xl">zxg_神说要有光</div>
+          <div class="text-gray-400 text-3xl tracking-wider">
+            <time class="mr-4">2021年07月31日</time>
+            <span>阅读 23</span>
+          </div>
+        </div>
+        <button class="flex-none" nz-button>关注</button>
+      </div>
+      <div class="mb-12 text-6xl leading-normal font-bold">{{articleDetail?.title}}</div>
+      <app-md-viewer *ngIf="articleDetail?.markContent"
+                     [markContent]="articleDetail?.markContent"></app-md-viewer>
+    </div>
+    <div class="py-12">
+      <div class="flex  rounded-sm p-6 flex-col">
+        <div class="bg-gray-100 flex rounded p-6">
+          <nz-avatar class="flex-none mr-6 mt-4" nzIcon="user"></nz-avatar>
+          <app-article-comment-editor (stateChange)="onCommentChange($event)" [targetId]="articleDetail?.id" class="w-full"></app-article-comment-editor>
+        </div>
+        <app-comment-list [articleId]="articleDetail?.id" [commentList]="commentList"  class="ml-12"></app-comment-list>
+      </div>
+    </div>
+  </article>
+</div>
+<div class="sidebar">
+
+</div>

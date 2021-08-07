@@ -1,0 +1,36 @@
+<div class="divide-y">
+  <div *ngFor="let comment of commentList" class="py-8">
+    <ng-container [ngTemplateOutletContext]="{$implicit:comment}" [ngTemplateOutlet]="commentTpl"></ng-container>
+    <div *ngIf="comment.replyList?.length" class="rounded bg-gray-100 p-6 mt-6 ml-12">
+      <div class="divide-y">
+        <div *ngFor="let reply of comment.replyList" class="py-8">
+          <ng-container [ngTemplateOutletContext]="{$implicit:reply}" [ngTemplateOutlet]="commentTpl"></ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<ng-template let-item  #commentTpl>
+  <div class="flex">
+    <nz-avatar class="flex-none mr-6 mt-4" nzIcon="user"></nz-avatar>
+    <div class="flex flex-col w-full">
+      <div>{{item.commenter.nickName}}</div>
+      <div class="my-6">{{item.content}}</div>
+      <div class="flex justify-between text-gray-400 text-3xl items-center">
+        <time class=" text-3xl">{{item.createdTime | date:'yyyy-MM-dd HH:mm:ss'}}</time>
+        <div class="flex items-center">
+          <i class="mr-12" nz-icon nzType="like" nzTheme="outline"></i>
+          <div class="flex items-center cursor-pointer" (click)="toggleEditorDisplay(item)">
+            <i class="mr-2" nz-icon nzType="comment" nzTheme="outline"></i>
+            回复
+          </div>
+        </div>
+      </div>
+      <app-article-comment-editor *ngIf="editableComment?.id === item.id" (stateChange)="onCommentChange($event)" [targetId]="articleId"
+                                  [repliedTargetId]="repliedTargetId"
+                                  [repliedUsersId]="repliedUsersId" class="w-full"></app-article-comment-editor>
+    </div>
+  </div>
+</ng-template>

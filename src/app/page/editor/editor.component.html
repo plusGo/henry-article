@@ -1,0 +1,79 @@
+<header class="editor-header">
+  <div class="left-box"></div>
+  <input placeholder="输入文章标题..." [value]="form.controls.title.value"
+         (change)="form.controls.title.setValue($event)" maxlength="80" class="editor-title-input"
+         type="text"/>
+  <div class="right-box">
+    <div class="status-text"></div>
+    <button nz-button nzType="primary"
+            nz-popover
+            nzPopoverTitle="发布文章"
+            nzPopoverTrigger="click"
+            (nzPopoverVisibleChange)="onVisibleChange($event)"
+            [nzPopoverContent]="contentTemplate">发布
+    </button>
+    <ng-template #contentTemplate>
+      <div class="submit-panel">
+        <form nz-form [formGroup]="form">
+          <nz-form-item>
+            <nz-form-label [nzSm]="6" nzRequired nzFor="category">文章分类</nz-form-label>
+            <nz-form-control [nzSm]="14">
+              <nz-select formControlName="category" id="category">
+                <nz-option nzValue="FRONTEND" nzLabel="前端"></nz-option>
+                <nz-option nzValue="BACKEND" nzLabel="后端"></nz-option>
+              </nz-select>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-label [nzSm]="6" nzFor="headImageId">文章封面</nz-form-label>
+            <nz-form-control [nzSm]="14">
+              <nz-upload
+                nzListType="picture-card"
+                [nzShowUploadList]="false"
+                [nzBeforeUpload]="beforeUpload"
+              >
+                <ng-container *ngIf="!form.value.headImageId">
+                  <i class="upload-icon" nz-icon [nzType]="loadingState?.uploading ? 'loading' : 'plus'"></i>
+                  <div class="ant-upload-text">上传封面</div>
+                </ng-container>
+                <app-auth-img style="width: 100%" [attachmentId]="form.value.headImageId"></app-auth-img>
+              </nz-upload>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-label [nzSm]="6" nzRequired nzFor="tags">文章标签</nz-form-label>
+            <nz-form-control [nzSm]="14">
+              <nz-select
+                [nzMaxMultipleCount]="2"
+                nzMode="tags"
+                formControlName="tags"
+              >
+                <nz-option nzValue="frontend" nzLabel="前端"></nz-option>
+                <nz-option nzValue="backend" nzLabel="后端"></nz-option>
+              </nz-select>
+
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-label [nzSm]="6" nzRequired nzFor="briefContent">文章摘要</nz-form-label>
+            <nz-form-control [nzSm]="14">
+              <nz-textarea-count [nzMaxCharacterCount]="100">
+                <textarea readonly [maxLength]="100" rows="4" formControlName="briefContent" nz-input></textarea>
+              </nz-textarea-count>
+            </nz-form-control>
+          </nz-form-item>
+          <br>
+          <nz-form-item>
+            <nz-form-control [nzSm]="24" nz-row nzJustify="center">
+              <button [nzLoading]="loadingState.submiting" [disabled]="form.invalid" (click)="submit()" nzBlock
+                      nz-button nzType="primary">确定并发布
+              </button>
+            </nz-form-control>
+          </nz-form-item>
+        </form>
+      </div>
+    </ng-template>
+  </div>
+</header>
+<app-md-editor #editor></app-md-editor>
+

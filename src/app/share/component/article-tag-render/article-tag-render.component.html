@@ -1,0 +1,8 @@
+<div class="text-mode">
+  <ng-container *ngFor="let tagCode of tagCodes,let i = index">
+    {{tagCode | enumLabel:'ArticleCategoryEnum'}}
+    <ng-container *ngIf="i !== tagCodes.length -1">
+      <i class="tag-divider-point"></i>
+    </ng-container>
+  </ng-container>
+</div>

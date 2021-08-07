@@ -1,0 +1,9 @@
+{
+  "/api": {
+    "target": "http://407f15171q.51vip.biz:10007",
+    "secure": false,
+    "pathRewrite": {
+      "^/api": ""
+    }
+  }
+}

@@ -1,0 +1,66 @@
+<header class="header">
+  <div class="header-logo flex items-center cursor-poninter" [routerLink]="['/']">
+    <img class="hide-mobile" src="assets/img/logo.png" alt="Henry">
+    <img class="hide-pc" src="assets/img/logo-mobile.jpg" alt="Henry">
+  </div>
+  <div class="header-right flex items-center">
+    <a class="hide-pc" nz-dropdown [nzDropdownMenu]="menu">
+      首页
+      <i nz-icon nzType="caret-down" nzTheme="outline"></i>
+      <nz-dropdown-menu #menu="nzDropdownMenu">
+        <ul nz-menu nzSelectable>
+          <li nz-menu-item>首页</li>
+          <li nz-menu-item>分享</li>
+        </ul>
+      </nz-dropdown-menu>
+    </a>
+
+    <ul class="hide-mobile" nz-menu nzMode="horizontal">
+      <li nz-menu-item>
+        设置
+      </li>
+      <li nz-menu-item>首页</li>
+      <li nz-menu-item>分享</li>
+    </ul>
+
+    <div class="header-right-ops">
+      <div class="search-wrapper">
+        <nz-input-group [nzSuffix]="suffixIconSearch">
+          <ng-template #suffixIconSearch>
+            <i nz-icon nzType="search"></i>
+          </ng-template>
+          <input type="text" nz-input placeholder="全站搜索"/>
+        </nz-input-group>
+      </div>
+      <a (click)="createArticle()">
+        <button class="edit-article hide-mobile" nzSize="small" nz-button nzType="primary">写文章</button>
+      </a>
+      <div *ngIf="!token" class="hide-mobile">
+        <button (click)="openLogin()" nzSize="small" nz-button nzType="link">登录</button>
+        <button (click)="openRegister()" nzSize="small" nz-button nzType="link">注册</button>
+      </div>
+      <div class="clickable" style="padding-left: 16px" *ngIf="token">
+        <app-user-avatar nz-dropdown [nzDropdownMenu]="loginMenu"></app-user-avatar>
+        <nz-dropdown-menu #loginMenu="nzDropdownMenu">
+          <ul nz-menu nzSelectable>
+            <li (click)="navigateToUserCenter()" nz-menu-item class="flex items-center">
+              <i nz-icon nzType="setting" nzTheme="outline"></i>
+              设置
+            </li>
+            <li nz-menu-item>您好！{{token?.nickName}}</li>
+            <li nz-menu-item (click)="logout()">退出</li>
+          </ul>
+        </nz-dropdown-menu>
+      </div>
+      <a *ngIf="!token" class="hide-pc mobile-user" nz-dropdown [nzDropdownMenu]="menu2">
+        <i nz-icon nzType="user"></i>
+        <nz-dropdown-menu #menu2="nzDropdownMenu">
+          <ul nz-menu nzSelectable>
+            <li (click)="openLogin()" nz-menu-item>登录</li>
+            <li (click)="openRegister()" nz-menu-item>注册</li>
+          </ul>
+        </nz-dropdown-menu>
+      </a>
+    </div>
+  </div>
+</header>

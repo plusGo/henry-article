@@ -1,0 +1,18 @@
+<div class="shadow-sm bg-white px-12 py-6 rounded-sm text-gray-400 flex items-center  w-full mb-8">
+  <i class="mr-2 font-bold" nz-icon nzType="left" nzTheme="outline"></i>
+  返回个人主页
+</div>
+<div class="flex">
+  <div class="shadow-sm bg-white px-12 py-6 rounded-sm  flex flex-none" style="width:230px">
+    <ul nz-menu class="w-full text-3xl border-transparent">
+      <li nz-menu-item class="flex items-center" nzMatchRouter="true"
+          [routerLink]="['/user/setting/profile']">
+        <i nz-icon nzType="idcard" nzTheme="outline"></i>
+        个人资料
+      </li>
+    </ul>
+  </div>
+  <div class="shadow-sm bg-white px-12 py-6 rounded-sm  flex items-center w-full ml-12">
+    <router-outlet></router-outlet>
+  </div>
+</div>

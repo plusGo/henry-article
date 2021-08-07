@@ -1,0 +1,5 @@
+<sf #form [schema]="schema" button="none" layout="vertical" [compact]="true">
+</sf>
+<button [nzLoading]="state.submiting" (click)="login()" nz-button nzType="primary" nzBlock
+        [disabled]="!form?.valid">登录
+</button>

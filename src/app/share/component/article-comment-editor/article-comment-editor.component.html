@@ -1,0 +1,8 @@
+<textarea [(ngModel)]="commentVal" class="w-full my-6" nz-input placeholder="输入评论..."
+          [nzAutosize]="{ minRows: 2, maxRows: 6 }"></textarea>
+<div class="flex justify-between mt-2">
+  <div></div>
+  <div>
+    <button [nzLoading]="loading" (click)="doComment()" nz-button nzType="primary">评论</button>
+  </div>
+</div>

@@ -1,0 +1,58 @@
+@import "../../../style/variable";
+
+:host {
+  display: block;
+  overflow: auto;
+
+  .index-content {
+    position: relative;
+    padding: 8px 0 8px 0;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    width: auto;
+    max-width: 960px;
+
+    .article-wrapper {
+      width: 700px;
+      background: $whiteColor;
+      border-radius: 4px;
+      margin-right: 240px;
+
+      nz-skeleton {
+        padding: 8px 16px;
+      }
+
+    }
+
+    .right-wrapper {
+      width: 240px;
+      position: absolute;
+      right: 0;
+      top: 0;
+
+      .advert {
+        margin-top: 8px;
+
+        img {
+          width: 240px;
+          height: 200px;
+        }
+      }
+    }
+  }
+
+
+
+}
+@media (max-width: 960px) {
+  .article-wrapper {
+    width: 100% !important;
+    margin-right: 0 !important;
+  }
+  .right-wrapper {
+    display: none;
+  }
+}
+
+

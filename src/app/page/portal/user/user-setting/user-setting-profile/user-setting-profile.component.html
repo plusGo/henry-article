@@ -1,0 +1,30 @@
+{{userToken | json}}
+<div class="flex flex-col">
+  <div class="text-4xl font-bold">
+    个人资料
+  </div>
+  <div class="mt-12 flex flex-row-reverse">
+    <div class="flex flex-col items-center mx-32 flex-none">
+      <nz-upload
+        nzListType="picture-card"
+        [nzShowUploadList]="false"
+        [nzBeforeUpload]="beforeUpload">
+        <ng-container *ngIf="!form.value?.avatarId">
+          <i nz-icon [nzType]="loadingState.uploading ? 'loading' : 'plus'"></i>
+          <div>上传头像</div>
+        </ng-container>
+        <app-auth-img class="rounded-full h-48 w-48" *ngIf="form.value?.avatarId"
+                      [attachmentId]="form.value?.avatarId"></app-auth-img>
+      </nz-upload>
+      <button nz-button nzType="link">撤销上传</button>
+      <div class="text-gray-400 text-2xl">
+        点击下方保存修改后生效
+      </div>
+    </div>
+    <sf class="w-full" #form [schema]="schema" button="none">
+    </sf>
+  </div>
+  <div class="mt-12 flex justify-center">
+    <button nz-button nzType="primary">保存修改</button>
+  </div>
+</div>
