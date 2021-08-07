@@ -59,11 +59,9 @@ export class IndexComponent implements OnInit, AfterViewInit, OnDestroy {
       takeUntil(this.destroy$)
     ).subscribe(event => {
       if (!this.loadingState.loadingOver && event.scrollBottom < IndexComponent.SCROLL_BOTTOM_threshold) {
-        debugger
         this.pageIndex++;
         this.loadMore(this.pageIndex);
       }
-      console.log(event);
     });
 
     fromEvent(this.elementRef.nativeElement, 'scroll').subscribe(e => {

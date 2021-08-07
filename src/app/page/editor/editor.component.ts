@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 // import * as bytemd from 'bytemd';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {NzUploadFile} from 'ng-zorro-antd/upload';
 import {AttachmentService} from '../../core/service/biz/attachment.service';
 import {NzMessageService} from 'ng-zorro-antd/message';
@@ -20,6 +20,7 @@ export class EditorComponent implements OnInit, AfterViewInit {
     uploading: false,
     submiting: false,
   };
+  titleFormControl: FormControl;
 
   @ViewChild('editor') editor: MarkdownEditorComponent;
 
@@ -36,7 +37,8 @@ export class EditorComponent implements OnInit, AfterViewInit {
       category: [null, [Validators.required]],
       tags: [null, [Validators.required]],
       headImageId: null
-    })
+    });
+    this.titleFormControl = this.form.controls.title as FormControl;
   }
 
   ngOnInit(): void {

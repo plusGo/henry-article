@@ -1,5 +1,5 @@
 <div class="index-content">
-  <div class="article-wrapper p-4">
+  <div class="article-wrapper">
     <nz-skeleton *ngIf="loadingState.initial"></nz-skeleton>
     <nz-empty nzNotFoundContent="空空如也 ~ ~" *ngIf="!loadingState.initial && !articleBriefs.length"></nz-empty>
     <ng-container *ngIf="articleBriefs.length">

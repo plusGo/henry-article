@@ -1,7 +1,7 @@
 <header class="editor-header">
   <div class="left-box"></div>
-  <input placeholder="输入文章标题..." [value]="form.controls.title.value"
-         (change)="form.controls.title.setValue($event)" maxlength="80" class="editor-title-input"
+  <input placeholder="输入文章标题..." [formControl]="titleFormControl"
+         maxlength="80" class="editor-title-input"
          type="text"/>
   <div class="right-box">
     <div class="status-text"></div>

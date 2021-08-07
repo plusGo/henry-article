@@ -1,36 +1,39 @@
-<div class="positive bg-white p-7 border-b-1 border-gray-100 flex flex-col hover:bg-gray-50 w-full">
-  <div class="meta-info">
-    {{articleBrief?.author?.nickName}}
-    <span class="text-horizontal-divider"> | </span>
-    {{articleBrief?.modifiedTime | date:'yyyy-MM-dd HH:mm'}}
-    <span class="text-horizontal-divider"> | </span>
-    <app-article-tag-render [tagCodes]="articleBrief?.tags"></app-article-tag-render>
-  </div>
-
-  <div class="article-title">
-    {{articleBrief?.title}}
-  </div>
-  <div class="article-main">
-    <div class="article-main-inner">
-      <div class="article-brief-content">
-        {{articleBrief?.briefContent}}
-      </div>
-      <div class="article-ops">
-        <div (click)="toggleLike($event)" class="article-ops-item">
-          <i *ngIf="loadingState.likeLoading" nz-icon nzType="loading" nzTheme="outline"></i>
-          <i *ngIf="!loadingState.likeLoading" [class.font-color-primary]="articleBrief?.isLiked" nz-icon nzType="like" nzTheme="outline"></i>
-          <span>{{articleBrief?.likeCount}}</span>
-        </div>
-        <div class="article-ops-item">
-          <i nz-icon nzType="comment" nzTheme="outline"></i>
-          <span>{{articleBrief?.commentCount}}</span>
-        </div>
-        <div class="article-ops-item">
-          <i nz-icon nzType="upload" nzTheme="outline"></i>
-          <span>分享</span>
-        </div>
-      </div>
+<div class="positive bg-white px-12 pt-8 hover:bg-gray-50 w-full cursor-pointer">
+  <div class="border-b border-gray-200 flex flex-col pb-6">
+    <div class="text-gray-400 flex divide-x-2 divide-gray-200 truncate mb-4">
+      <span class="pr-4">{{articleBrief?.author?.nickName}}</span>
+      <time class="pl-4">{{articleBrief?.modifiedTime | date:'yyyy-MM-dd HH:mm'}}</time>
+      <app-article-tag-render class="ml-4 pl-4" [tagCodes]="articleBrief?.tags"></app-article-tag-render>
     </div>
-    <app-auth-img class="article-head-img" [attachmentId]="articleBrief?.headImageId"></app-auth-img>
+
+    <div class="flex items-center">
+      <div class="w-full flex flex-col justify-between h-40 overflow-hidden">
+        <div class="truncate  font-bold text-3xl w">
+          {{articleBrief?.title}}
+        </div>
+        <div class="truncate  text-gray-400">
+          {{articleBrief?.briefContent}}
+        </div>
+        <div class="flex text-gray-400">
+          <div class="mr-12 flex items-center">
+            <i nz-icon nzType="eye" nzTheme="outline"></i>
+            <span class="ml-2">{{articleBrief?.viewCount}}</span>
+          </div>
+          <div (click)="toggleLike($event)" class="mr-12 flex items-center">
+            <i *ngIf="loadingState.likeLoading" nz-icon nzType="loading" nzTheme="outline"></i>
+            <i *ngIf="!loadingState.likeLoading" [class.font-color-primary]="articleBrief?.isLiked" nz-icon
+               nzType="like"
+               nzTheme="outline"></i>
+            <span class="ml-2">{{articleBrief?.likeCount}}</span>
+          </div>
+          <div class="flex items-center">
+            <i nz-icon nzType="comment" nzTheme="outline"></i>
+            <span class="ml-2">{{articleBrief?.commentCount}}</span>
+          </div>
+
+        </div>
+      </div>
+      <app-auth-img class="ml-8 w-64 h-40 rounded flex-none" [attachmentId]="articleBrief?.headImageId"></app-auth-img>
+    </div>
   </div>
 </div>
