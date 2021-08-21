@@ -29,6 +29,7 @@
     <div class="py-12">
       <div class="text-3xl text-red-700 font-bold">热门评论</div>
       <app-comment-list [articleId]="articleDetail?.id" [commentList]="commentList"></app-comment-list>
+      <nz-empty *ngIf="!commentList?.length" [nzNotFoundContent]="'暂无评论'"></nz-empty>
     </div>
   </article>
 </div>
