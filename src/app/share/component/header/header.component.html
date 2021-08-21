@@ -37,7 +37,7 @@
         <button class="edit-article hide-mobile" nzSize="small" nz-button nzType="primary">写文章</button>
       </a>
       <div *ngIf="!token" class="hide-mobile">
-        <button (click)="openLogin()" nzSize="small" nz-button nzType="link">登录</button>
+        <button appLoginCheck nzSize="small" nz-button nzType="link">登录</button>
         <button (click)="openRegister()" nzSize="small" nz-button nzType="link">注册</button>
       </div>
       <div class="clickable" style="padding-left: 16px" *ngIf="token">
@@ -63,7 +63,7 @@
         <i nz-icon nzType="user"></i>
         <nz-dropdown-menu #menu2="nzDropdownMenu">
           <ul nz-menu nzSelectable>
-            <li (click)="openLogin()" nz-menu-item>登录</li>
+            <li appLoginCheck nz-menu-item>登录</li>
             <li (click)="openRegister()" nz-menu-item>注册</li>
           </ul>
         </nz-dropdown-menu>

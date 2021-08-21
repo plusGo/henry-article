@@ -28,6 +28,7 @@ import {NzEmptyModule} from 'ng-zorro-antd/empty';
 import {ArticleCommentEditorComponent} from './component/article-comment-editor/article-comment-editor.component';
 import {EnumLabelPipe} from './pipe/enum-label.pipe';
 import {LikeCountComponent} from './component/like-count/like-count.component';
+import {LoginCheckDirective} from './directive/login-check.directive';
 
 
 export const ZORRO_MODULES = [
@@ -58,9 +59,10 @@ export const COMPONENTS = [
   LikeCountComponent
 ];
 export const PIPES = [AttachmentImgPipe, EnumLabelPipe];
+export const DIRECTIVES = [LoginCheckDirective];
 
 @NgModule({
-  declarations: [...COMPONENTS, ...PIPES,],
+  declarations: [...COMPONENTS, ...PIPES, ...DIRECTIVES],
   imports: [
     CommonModule,
     FormsModule,
@@ -77,6 +79,7 @@ export const PIPES = [AttachmentImgPipe, EnumLabelPipe];
     DelonFormModule,
     ...ZORRO_MODULES,
     ...COMPONENTS,
+    ...DIRECTIVES,
     ...PIPES
   ],
   entryComponents: [RegisterComponent, LoginComponent]

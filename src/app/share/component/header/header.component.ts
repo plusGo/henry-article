@@ -42,9 +42,6 @@ export class HeaderComponent implements OnInit {
     })
   }
 
-  openLogin() {
-    this.loginService.openLoginModal();
-  }
 
   createArticle(): void {
     this.authCheckService.run(() => {

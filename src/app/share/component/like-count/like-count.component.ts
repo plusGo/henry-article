@@ -54,11 +54,6 @@ export class LikeCountComponent implements OnInit {
   toggleLike(event: MouseEvent): void {
     event.stopPropagation();
 
-    if (!this.authService.isLogin()) {
-      this.loginService.openLoginModal();
-      return;
-    }
-
     if (this.loadingState.likeLoading) {
       return;
     }
