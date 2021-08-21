@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, HostListener, Input, OnInit} from '@angular/core';
 import {CommentDto} from '../../../model/dto/comment.dto';
 import {PortalCommentService} from '../../../core/service/biz/portal/portal-comment.service';
 import {CommentEditorEvent} from '../../../share/component/article-comment-editor/article-comment-editor.component';
@@ -27,6 +27,17 @@ export class CommentListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  @HostListener('click', ['$event'])
+  onElementRefClick(event: MouseEvent): void {
+    event.preventDefault();
+    event.stopPropagation();
+  }
+
+  @HostListener('document:click')
+  onDocumentClick(): void {
+    this.editableComment = null;
   }
 
   onCommentChange(event: CommentEditorEvent): void {

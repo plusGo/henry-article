@@ -1,7 +1,7 @@
 <div class="main shadow-sm bg-white p-12 rounded-sm">
   <article class="divide-y divide-gray-200 divide-solid">
     <nz-skeleton *ngIf="loadingState.loadingArticle"></nz-skeleton>
-    <div class="py-12">
+    <div class="pb-12">
       <div class="flex flex-row h-20 items-center mb-12">
         <nz-avatar nzSize="large" class="flex-none mr-4" nzIcon="user"></nz-avatar>
         <div class="w-full  flex flex-col justify-between h-full">
@@ -18,13 +18,17 @@
                      [markContent]="articleDetail?.markContent"></app-md-viewer>
     </div>
     <div class="py-12">
-      <div class="flex  rounded-sm p-6 flex-col">
+      <div class="flex  rounded-sm  flex-col">
         <div class="bg-gray-100 flex rounded p-6">
-          <nz-avatar class="flex-none mr-6 mt-4" nzIcon="user"></nz-avatar>
-          <app-article-comment-editor (stateChange)="onCommentChange($event)" [targetId]="articleDetail?.id" class="w-full"></app-article-comment-editor>
+          <nz-avatar class="flex-none mr-6 mt-4 hidden md:block" nzIcon="user"></nz-avatar>
+          <app-article-comment-editor (stateChange)="onCommentChange($event)" [targetId]="articleDetail?.id"
+                                      class="w-full"></app-article-comment-editor>
         </div>
-        <app-comment-list [articleId]="articleDetail?.id" [commentList]="commentList"  class="ml-12"></app-comment-list>
       </div>
+    </div>
+    <div class="py-12">
+      <div class="text-3xl text-red-700 font-bold">热门评论</div>
+      <app-comment-list [articleId]="articleDetail?.id" [commentList]="commentList"></app-comment-list>
     </div>
   </article>
 </div>
