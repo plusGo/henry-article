@@ -5,6 +5,7 @@ import {StorageService} from '../../../storage/src/lib/storage.service';
 
 @Injectable()
 export class AuthService {
+   static AUTHORIZATION = 'Authorization';
   private static LOCAL_AUTH_TOKEN_KEY = 'LOCAL_AUTH_TOKEN_KEY';
   authToken$ = new BehaviorSubject<AuthToken>(null);
 
@@ -35,5 +36,17 @@ export class AuthService {
   logout(): void {
     StorageService.session().remove(AuthService.LOCAL_AUTH_TOKEN_KEY);
     this.authToken$.next(null);
+  }
+
+  setJwt(jwt: string): void {
+    StorageService.session().saveString(AuthService.AUTHORIZATION, jwt);
+  }
+
+  cleatJwt(): void {
+    StorageService.session().remove(AuthService.AUTHORIZATION);
+  }
+
+  getJwt(): string {
+    return StorageService.session().getString(AuthService.AUTHORIZATION);
   }
 }

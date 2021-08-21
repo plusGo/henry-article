@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {HttpPlusConfig} from 'ng-http-plus';
 import {LoginService} from './core/service/biz/auth/login.service';
 import {NzModalService} from 'ng-zorro-antd/modal';
+import {AuthService} from '../../projects/auth/src/lib/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -9,25 +10,25 @@ import {NzModalService} from 'ng-zorro-antd/modal';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  static AUTHORIZATION = 'Authorization';
-
   constructor(private loginService: LoginService,
+              private authService: AuthService,
               private modalService: NzModalService) {
     HttpPlusConfig.builder()
       .baseUrl('')
       .addInterceptor({
         request: (req) => {
-          const token = window.sessionStorage.getItem(AppComponent.AUTHORIZATION);
+          const token = this.authService.getJwt();
+
           if (!token) {
             return req;
 
           }
-          return req.clone({headers: req.headers.set(AppComponent.AUTHORIZATION, token)});
+          return req.clone({headers: req.headers.set(AuthService.AUTHORIZATION, token)});
         },
         response: (res) => {
-          const token = (res as any).headers.get(AppComponent.AUTHORIZATION);
+          const token = (res as any).headers.get(AuthService.AUTHORIZATION);
           if (token) {
-            window.sessionStorage.setItem(AppComponent.AUTHORIZATION, token);
+            this.authService.setJwt(token);
           }
         }
       }).addResponseInterceptor((res) => {
