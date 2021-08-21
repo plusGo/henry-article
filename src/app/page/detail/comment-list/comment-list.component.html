@@ -29,7 +29,7 @@
         <div class="flex items-center">
           <app-like-count  [isLiked]="item.isLiked" [count]="item.likeCount"
                           [targetId]="item.id" (onStateChange)="onLikeChange($event,item)"></app-like-count>
-          <div appLoginCheck class="flex items-center cursor-pointer" (click)="toggleEditorDisplay(item)">
+          <div appLoginCheck (afterAuthCheck)="toggleEditorDisplay(item)" class="flex items-center cursor-pointer">
             <i class="mr-2" nz-icon nzType="comment" nzTheme="outline"></i>
             回复
           </div>

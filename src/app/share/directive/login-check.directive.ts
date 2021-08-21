@@ -1,4 +1,4 @@
-import {Directive, HostListener} from '@angular/core';
+import {Directive, EventEmitter, HostListener, Output} from '@angular/core';
 import {AuthService} from '../../../../projects/auth/src/lib/auth.service';
 import {NzModalService} from 'ng-zorro-antd/modal';
 import {LoginService} from '../../core/service/biz/auth/login.service';
@@ -10,6 +10,8 @@ import {LoginService} from '../../core/service/biz/auth/login.service';
   selector: '[appLoginCheck]'
 })
 export class LoginCheckDirective {
+  @Output()
+  afterAuthCheck = new EventEmitter<MouseEvent>();
 
   constructor(private authService: AuthService,
               private loginService: LoginService,
@@ -18,12 +20,11 @@ export class LoginCheckDirective {
   }
 
   @HostListener('click', ['$event'])
-  onElementRefClick(event: MouseEvent): void {
+  onElementRefClick(event: MouseEvent): boolean {
     if (this.authService.isLogin()) {
-      return;
+      this.afterAuthCheck.emit(event);
+      return true;
     } else {
-      event.preventDefault();
-      event.stopPropagation();
 
       this.modalService.confirm({
         nzTitle: '提示',
@@ -33,7 +34,8 @@ export class LoginCheckDirective {
           this.loginService.openLoginModal();
         },
         nzCancelText: '暂不评论'
-      })
+      });
+      return false;
     }
   }
 
