@@ -35,6 +35,7 @@ export class AuthService {
 
   logout(): void {
     StorageService.session().remove(AuthService.LOCAL_AUTH_TOKEN_KEY);
+    this.cleatJwt();
     this.authToken$.next(null);
   }
 
