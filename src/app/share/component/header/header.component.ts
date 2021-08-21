@@ -4,7 +4,6 @@ import {RegisterComponent} from '../register/register.component';
 import {ModalWidthConstant} from '../../../core/constant/modal-width.constant';
 import {UserTokenDto} from '../../../model/dto/user-token.dto';
 import {AuthService} from '../../../../../projects/auth/src/lib/auth.service';
-import {AuthCheckService} from '../../../core/service/auth/auth-check.service';
 import {Router} from '@angular/router';
 import {LoginService} from '../../../core/service/biz/auth/login.service';
 
@@ -20,7 +19,6 @@ export class HeaderComponent implements OnInit {
 
   constructor(private modalService: NzModalService,
               private changeDetectorRef: ChangeDetectorRef,
-              private authCheckService: AuthCheckService,
               private router: Router,
               private loginService: LoginService,
               private authService: AuthService) {
@@ -44,9 +42,7 @@ export class HeaderComponent implements OnInit {
 
 
   createArticle(): void {
-    this.authCheckService.run(() => {
-      this.router.navigate(['/editor/drafts/new']);
-    });
+    this.router.navigate(['/editor/drafts/new']);
   }
 
   logout(): void {

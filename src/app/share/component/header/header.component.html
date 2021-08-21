@@ -33,7 +33,7 @@
           <input type="text" nz-input placeholder="全站搜索"/>
         </nz-input-group>
       </div>
-      <a (click)="createArticle()">
+      <a appLoginCheck (afterAuthCheck)="createArticle()">
         <button class="edit-article hide-mobile" nzSize="small" nz-button nzType="primary">写文章</button>
       </a>
       <div *ngIf="!token" class="hide-mobile">
@@ -44,7 +44,7 @@
         <app-user-avatar nz-dropdown [nzDropdownMenu]="loginMenu" nzPlacement="bottomCenter"></app-user-avatar>
         <nz-dropdown-menu  #loginMenu="nzDropdownMenu">
           <ul nz-menu nzSelectable>
-            <li  (click)="createArticle()" nz-menu-item class="flex items-center">
+            <li appLoginCheck (afterAuthCheck)="createArticle()" nz-menu-item class="flex items-center">
               <i nz-icon nzType="edit" nzTheme="outline" class="mr-4"></i>写文章
             </li>
             <li  nz-menu-divider>
