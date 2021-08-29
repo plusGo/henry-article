@@ -2,6 +2,7 @@ import {Directive, EventEmitter, HostListener, Output} from '@angular/core';
 import {AuthService} from '../../../../projects/auth/src/lib/auth.service';
 import {NzModalService} from 'ng-zorro-antd/modal';
 import {LoginService} from '../../core/service/biz/auth/login.service';
+import {SsoLoginService} from '../../core/service/biz/auth/sso-login.service';
 
 /**
  * 当用户未登录时，点击宿主组件，会提醒用户未登录
@@ -15,6 +16,7 @@ export class LoginCheckDirective {
 
   constructor(private authService: AuthService,
               private loginService: LoginService,
+              private ssoLoginService: SsoLoginService,
               private modalService: NzModalService) {
 
   }
@@ -31,7 +33,8 @@ export class LoginCheckDirective {
         nzContent: '您需要登录后才可评论',
         nzOkText: '前往登录',
         nzOnOk: () => {
-          this.loginService.openLoginModal();
+          this.ssoLoginService.redirectToSSOLogin();
+          // this.loginService.openLoginModal();
         },
         nzCancelText: '暂不评论'
       });
