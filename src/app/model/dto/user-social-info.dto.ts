@@ -1,4 +1,6 @@
+import {PoIdentityType} from '../type/po-identity.type';
+
 export interface UserSocialInfoDto {
-  id: string;
+  id: PoIdentityType;
   nickName: string;
 }

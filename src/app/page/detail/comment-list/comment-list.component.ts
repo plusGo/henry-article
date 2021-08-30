@@ -3,6 +3,7 @@ import {CommentDto} from '../../../model/dto/comment.dto';
 import {PortalCommentService} from '../../../core/service/biz/portal/portal-comment.service';
 import {CommentEditorEvent} from '../../../share/component/article-comment-editor/article-comment-editor.component';
 import {LikeCountEvent} from '../../../share/component/like-count/like-count.component';
+import {PoIdentityType} from '../../../model/type/po-identity.type';
 
 @Component({
   selector: 'app-comment-list',
@@ -16,11 +17,11 @@ export class CommentListComponent implements OnInit {
   commentList: CommentDto[] = [];
 
   @Input()
-  articleId: string;
+  articleId: PoIdentityType;
 
   editableComment: CommentDto;
-  repliedTargetId: string;
-  repliedUsersId: string;
+  repliedTargetId: PoIdentityType;
+  repliedUsersId: PoIdentityType;
 
   constructor(private portalCommentService: PortalCommentService,
               private changeDetectorRef: ChangeDetectorRef) {

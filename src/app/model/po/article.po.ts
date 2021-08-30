@@ -1,9 +1,11 @@
+import {PoIdentityType} from '../type/po-identity.type';
+
 export class ArticlePo {
-  id?: string;
+  id?: PoIdentityType;
   title?: string;
   markContent?: string;
   briefContent?: string;
   category: string;
   tags?: string;
-  headImageId?: string;
+  headImageId?: PoIdentityType;
 }

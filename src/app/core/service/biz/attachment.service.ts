@@ -5,6 +5,7 @@ import {AttachmentPo} from '../../../model/po/attachment.po';
 import {map} from 'rxjs/operators';
 import {NzUploadFile} from 'ng-zorro-antd/upload';
 import {NzSafeAny} from 'ng-zorro-antd/core/types';
+import {PoIdentityType} from '../../../model/type/po-identity.type';
 
 @Injectable({providedIn: 'root'})
 export class AttachmentService {
@@ -23,14 +24,14 @@ export class AttachmentService {
     );
   }
 
-  download(attachmentId: string): Observable<Blob> {
+  download(attachmentId: PoIdentityType): Observable<Blob> {
     return HttpPlusClient.builder()
       .url(`/article-server/common/attachments/download/${attachmentId}`)
       .responseType(HttpResponseType.BLOB)
       .get();
   }
 
-  base64(attachmentId: string): Observable<String> {
+  base64(attachmentId: PoIdentityType): Observable<String> {
     return HttpPlusClient.builder()
       .url(`/article-server/common/attachments/base64/${attachmentId}`)
       .responseType(HttpResponseType.TEXT)

@@ -1,6 +1,9 @@
 {
   "/article-server": {
-    "target": "http://localhost:8080",
-    "secure": false
+    "target": "http://localhost:8088",
+    "secure": false,
+    "pathRewrite": {
+      "^/article-server": ""
+    }
   }
 }

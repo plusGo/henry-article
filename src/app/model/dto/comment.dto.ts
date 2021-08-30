@@ -1,17 +1,18 @@
 import {UserSocialInfoDto} from './user-social-info.dto';
+import {PoIdentityType} from '../type/po-identity.type';
 
 export class CommentDto {
-  id?: string;
+  id?: PoIdentityType;
   content?: string;
-  targetId?: string;
+  targetId?: PoIdentityType;
   commenter?: UserSocialInfoDto;
-  commenterId?: string;
+  commenterId?: PoIdentityType;
   createdTime?: string;
 
   replyList?: CommentDto[];
   repliedUser?: UserSocialInfoDto;
-  repliedUserId?: string;
-  repliedTargetId?: string;
+  repliedUserId?: PoIdentityType;
+  repliedTargetId?: PoIdentityType;
 
   likeCount?: number;
   viewCount?: number;

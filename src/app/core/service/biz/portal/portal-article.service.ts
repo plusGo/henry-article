@@ -5,6 +5,7 @@ import {ArticleBriefDto} from '../../../../model/dto/article-brief.dto';
 import {ArticleDetailDto} from '../../../../model/dto/article-detail.dto';
 import {CommentDto} from '../../../../model/dto/comment.dto';
 import {ArticleCreateRequest} from '../../../../model/request/article-create.request';
+import {PoIdentityType} from '../../../../model/type/po-identity.type';
 
 @Injectable({providedIn: 'root'})
 export class PortalArticleService {
@@ -17,14 +18,14 @@ export class PortalArticleService {
       .get();
   }
 
-  findCommentList(articleId: string, pageIndex = 0, pageSize = 20): Observable<CommentDto[]> {
+  findCommentList(articleId: PoIdentityType, pageIndex = 0, pageSize = 20): Observable<CommentDto[]> {
     return HttpPlusClient.builder()
       .url(`/article-server/portal/articles/${articleId}/comments`)
       .params({pageIndex: `${pageIndex}`, pageSize: `${pageSize}`})
       .get();
   }
 
-  getDetailById(id: string): Observable<ArticleDetailDto> {
+  getDetailById(id: PoIdentityType): Observable<ArticleDetailDto> {
     return HttpPlusClient.builder()
       .url(`/article-server/portal/articles/${id}`)
       .get();

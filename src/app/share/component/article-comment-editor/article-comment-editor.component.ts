@@ -9,10 +9,11 @@ import {
 } from '@angular/core';
 import {PortalCommentService} from '../../../core/service/biz/portal/portal-comment.service';
 import {NzMessageService} from 'ng-zorro-antd/message';
+import {PoIdentityType} from '../../../model/type/po-identity.type';
 
 export interface CommentEditorEvent {
-  id: string;
-  repliedTargetId: string;
+  id: PoIdentityType;
+  repliedTargetId: PoIdentityType;
 }
 
 @Component({
@@ -27,13 +28,13 @@ export class ArticleCommentEditorComponent implements OnInit {
   commentVal: string;
 
   @Input()
-  targetId: string;
+  targetId: PoIdentityType;
 
   @Input()
-  repliedUsersId: string;
+  repliedUsersId: PoIdentityType;
 
   @Input()
-  repliedTargetId: string;
+  repliedTargetId: PoIdentityType;
 
   @Output()
   stateChange = new EventEmitter<CommentEditorEvent>();

@@ -9,6 +9,7 @@ import {
 } from '@angular/core';
 import {AttachmentService} from '../../../core/service/biz/attachment.service';
 import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
+import {PoIdentityType} from '../../../model/type/po-identity.type';
 
 @Component({
   selector: 'app-auth-img',
@@ -19,7 +20,7 @@ import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
 })
 export class AuthImgComponent implements OnInit, OnChanges {
   @Input()
-  attachmentId: string;
+  attachmentId: PoIdentityType;
 
   src: SafeResourceUrl = null;
 

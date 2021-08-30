@@ -5,6 +5,7 @@ import {ArticlePo} from '../../../model/po/article.po';
 import {JpaPageDto} from '../../../model/dto/jpa-page.dto';
 import {ArticleBriefDto} from '../../../model/dto/article-brief.dto';
 import {ArticleDetailDto} from '../../../model/dto/article-detail.dto';
+import {PoIdentityType} from '../../../model/type/po-identity.type';
 
 @Injectable({providedIn: 'root'})
 export class ArticleService {
@@ -24,7 +25,7 @@ export class ArticleService {
       .post();
   }
 
-  findDetail(id: string): Observable<ArticleDetailDto> {
+  findDetail(id: PoIdentityType): Observable<ArticleDetailDto> {
     return HttpPlusClient.builder()
       .url(`/article-server/articles/${id}`)
       .get();

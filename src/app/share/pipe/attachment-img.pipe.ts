@@ -2,6 +2,7 @@ import {ElementRef, Pipe, PipeTransform} from '@angular/core';
 import {AttachmentService} from '../../core/service/biz/attachment.service';
 import {Observable, Subject} from 'rxjs';
 import {NzSafeAny} from 'ng-zorro-antd/core/types';
+import {PoIdentityType} from '../../model/type/po-identity.type';
 
 @Pipe({
   name: 'attachmentImg'
@@ -12,7 +13,7 @@ export class AttachmentImgPipe implements PipeTransform {
               private elementRef: ElementRef) {
   }
 
-  transform(attachmentId: string): Observable<string> {
+  transform(attachmentId: PoIdentityType): Observable<string> {
 
     const result$ = new Subject<string | NzSafeAny>();
     this.attachmentService.download(attachmentId).subscribe(res => {

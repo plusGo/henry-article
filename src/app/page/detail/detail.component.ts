@@ -7,6 +7,7 @@ import {CommentDto} from '../../model/dto/comment.dto';
 import {PortalViewRecordService} from '../../core/service/biz/portal/portal-view-record.service';
 import {CommentEditorEvent} from '../../share/component/article-comment-editor/article-comment-editor.component';
 import {CommentListComponent} from './comment-list/comment-list.component';
+import {PoIdentityType} from '../../model/type/po-identity.type';
 
 @Component({
   selector: 'app-detail',
@@ -32,7 +33,7 @@ export class DetailComponent implements OnInit {
     this.route.paramMap.subscribe(map => {
       const id = map.get('id');
       if (id) {
-        this.loadData(id);
+        this.loadData(Number(id));
       }
     })
   }
@@ -40,7 +41,7 @@ export class DetailComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  loadData(id: string) {
+  loadData(id: PoIdentityType) {
     this.loadingState.loadingArticle = true;
     this.portalArticleService.getDetailById(id).subscribe(res => {
       this.articleDetail = res;

@@ -11,10 +11,11 @@ import {LikeTypeEnum} from '../../../model/enum/like-type.enum';
 import {AuthService} from '../../../../../projects/auth/src/lib/auth.service';
 import {LoginService} from '../../../core/service/biz/auth/login.service';
 import {PortalLikeService} from '../../../core/service/biz/portal/portal-like.service';
+import {PoIdentityType} from '../../../model/type/po-identity.type';
 
 export interface LikeCountEvent {
   isLiked: boolean;
-  targetId: string;
+  targetId: PoIdentityType;
   count: number;
 }
 
@@ -30,7 +31,7 @@ export class LikeCountComponent implements OnInit {
   isLiked: boolean;
 
   @Input()
-  targetId: string;
+  targetId: PoIdentityType;
 
   @Input()
   count: number;
