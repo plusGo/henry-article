@@ -49,6 +49,7 @@ export class ArticleCommentEditorComponent implements OnInit {
 
   doComment(): void {
     this.loading = true;
+    debugger
     const request = {
       content: this.commentVal,
       targetId: this.targetId,

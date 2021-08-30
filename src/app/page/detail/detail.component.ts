@@ -33,7 +33,7 @@ export class DetailComponent implements OnInit {
     this.route.paramMap.subscribe(map => {
       const id = map.get('id');
       if (id) {
-        this.loadData(Number(id));
+        this.loadData(id);
       }
     })
   }

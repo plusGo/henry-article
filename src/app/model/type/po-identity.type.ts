@@ -1,1 +1,1 @@
-export type PoIdentityType = number;
+export type PoIdentityType = string;
